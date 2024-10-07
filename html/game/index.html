@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Click the Button Game</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        .game-container {
+            text-align: center;
+        }
+        #gameButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #gameButton:active {
+            background-color: #0056b3;
+        }
+        #score {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+        #timer {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <button id="gameButton">Click Me!</button>
+        <div id="score">Score: 0</div>
+        <div id="timer">Time: 10s</div>
+    </div>
+
+    <script>
+        let score = 0;
+        let timeLeft = 10;
+        let timerInterval;
+
+        document.getElementById('gameButton').addEventListener('click', () => {
+            if (timeLeft > 0) {
+                score++;
+                document.getElementById('score').textContent = `Score: ${score}`;
+            }
+        });
+
+        function startGame() {
+            score = 0;
+            timeLeft = 10;
+            document.getElementById('score').textContent = `Score: ${score}`;
+            document.getElementById('timer').textContent = `Time: ${timeLeft}s`;
+
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = `Time: ${timeLeft}s`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    document.getElementById('gameButton').disabled = true;
+                    alert(`Game Over! Your score is ${score}`);
+                }
+            }, 1000);
+        }
+
+        // Start the game when the page loads
+        window.onload = startGame;
+    </script>
+
+</body>
+</html>

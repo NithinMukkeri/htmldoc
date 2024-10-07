@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="item item1"><img src="./shr1.jpg" alt="Image 1"></div>
+        
+        <div class="item item3"><img src="./shr3.jpg" alt="Image 3"></div>
+        <div class="item item4"><img src="./shr4.jpg" alt="Image 4"></div>
+        <div class="item item5"><img src="./shr5.jpg" alt="Image 5"></div>
+        <div class="item item6"><img src="./shr6.jpg" alt="Image 6"></div>
+        <div class="item item7"><img src="./shr7.jpg" alt="Image 7"></div>
+        <div class="item item8"><img src="./shr8.jpg" alt="Image 8"></div>
+        
+        <div class="item item11"><img src="./shr9.jpg" alt="Image 11"></div>
+        <div class="item item12"><img src="./shr10.jpg" alt="Image 12"></div>
+        <div class="item item13"><img src="./shr37.jpg" alt="Image 13"></div>
+        <div class="item item14"><img src=" ./shr12.jpg"alt="Image 14"></div>
+        <div class="item item15"><img src="./shr13.jpg" alt="Image 15"></div>
+        <div class="item item16"><img src="./shr14.jpg" alt="Image 16"></div>
+        
+        <div class="item item18"><img src="./shr15.jpg" alt="Image 18"></div>
+        <div class="item item19"><img src="./shr16.jpg" alt="Image 19"></div>
+        <div class="item item20"><img src="./shr11.jpg" alt="Image 20"></div>
+        <div class="item item21"><img src="./shr19.jpg" alt="Image 21"></div>
+        <div class="item item22"><img src="./shr20.jpg" alt="Image 22"></div>
+        <div class="item item23"><img src="./shr21.jpg" alt="Image 23"></div>
+        <div class="item item24"><img src="./shr22.jpg" alt="Image 24"></div>
+        <div class="item item25"><img src="./shr23.jpg" alt="Image 25"></div>
+        <div class="item item26"><img src="./shr24.jpg" alt="Image 26"></div>
+        <div class="item item27"><img src="./shr25.jpg" alt="Image 27"></div>
+        <div class="item item28"><img src="./shr26.jpg" alt="Image 28"></div>
+        <div class="item item29"><img src="./shrr27.jpg" alt="Image 29"></div>
+        <div class="item item30"><img src="./shr28.jpg" alt="Image 30"></div>
+        <div class="item item31"><img src="./shr29.jpg" alt="Image 31"></div>
+        <div class="item item32"><img src="./shr30.jpg" alt="Image 32"></div>
+        <div class="item item33"><img src="./shr31.jpg" alt="Image 33"></div>
+        <div class="item item34"><img src="./shr32.jpg" alt="Image 34"></div>
+        <div class="item item35"><img src="./shr34.jpg" alt="Image 35"></div>
+        <div class="item item36"><img src="./shr35.jpg" alt="Image 36"></div>
+        <div class="item item37"><img src="./shr36.jpg" alt="Image 37"></div>
+        <div class="item item38"><img src="./shr17.jpg" alt="Image 38"></div>
+        <div class="item item39"><img src="./shr38.jpg" alt="Image 39"></div>
+        <div class="item item40"><img src="./shr39.jpg" alt="Image 40"></div>
+        <div class="item item41"><img src="./shr40.jpg" alt="Image 41"></div>
+        <div class="item item42"><img src="./shr41.jpg" alt="Image 42"></div>
+        <div class="item item43"><img src="./shr42.jpg" alt="Image 43"></div>
+        <div class="item item44"><img src="./shr44.jpg" alt="Image 44"></div>
+        <div class="item item45"><img src="./shr45.jpg" alt="Image 45"></div>
+        <div class="item item46"><img src="./hr33.jpg" alt="Image 46"></div>
+        <div class="item item47"><img src="./hr45.jpg" alt="Image 47"></div>
+        <div class="item item48"><img src="./shrr23.jpg" alt="Image 48"></div>
+        <div class="item item49"><img src="./shr1.jpg" alt="Image 49"></div>
+        <div class="item item50"><img src="./shr21.jpg" alt="Image 50"></div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.item');
+
+        // Add click event listener to each item
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                // Toggle enlarged class
+                this.classList.toggle('enlarged');
+            });
+        });
+        const itemss = document.querySelectorAll('.item img');
+
+    // Add click event listener to each item
+    itemss.forEach(item => {
+        item.addEventListener('click', function() {
+            // Toggle object-fit between 'fill' and 'cover'
+            if (this.style.objectFit === 'fill') {
+                this.style.objectFit = 'cover';  // Default back to cover
+            } else {
+                this.style.objectFit = 'fill';   // Expand to fill on click
+            }
+        });
+    });
+    </script>
+        
+</body>
+</html>
