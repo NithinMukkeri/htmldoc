@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Interface</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+
+        /* Background Color for body */
+        body {
+            background-color: aqua;
+            font-family: Arial, sans-serif;
+            width: 90%;
+            height: 90%;
+        }
+
+        /* Container */
+        .search-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            position: absolute; /* Center the container */
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            flex: 0 0 43%;  /* 43% width for the dropdown */
+        }
+
+        .dropdown-button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: rgb(227, 53, 53);
+            border: 1px solid #ccc;
+            border-radius: 50px 0 0 50px; /* Same border-radius as input */
+            text-align: left;
+            outline: none;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-button:focus {
+            background-color: #e28b8b;
+            border-color: #007BFF;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            opacity: 0;
+            margin-top: 10px;
+            border-radius: 20px;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .dropdown-menu ul li {
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-menu ul li:hover,
+        .dropdown-menu ul li:focus {
+            background-color: #f1f1f1;
+        }
+
+        /* Search Input */
+        .search-input-container {
+            flex: 0 0 57%;  /* 57% width for the search input */
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 0 50px 50px 0; /* Same border-radius as dropdown */
+            outline: none;
+            padding-right: 35px; /* Space for the search icon */
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%); /* Vertically center the icon */
+            font-size: 18px;
+            color: #007BFF;
+            pointer-events: none; /* So it doesn't interfere with clicking in the input */
+        }
+
+        /* Focus styles */
+        .search-button:focus,
+        .dropdown-button:focus,
+        .search-input:focus {
+            outline: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="search-container">
+        <!-- Dropdown -->
+        <div class="dropdown">
+            <button class="dropdown-button" aria-haspopup="true" aria-expanded="false" aria-controls="dropdown-menu">Select Category</button>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <ul>
+                    <li role="menuitem" data-category="everything">Everything</li>
+                    <li role="menuitem" data-category="software-development">Software Development</li>
+                    <li role="menuitem" data-category="web-development">Web Development</li>
+                    <li role="menuitem" data-category="data-analyst">Data Analyst</li>
+                    <li role="menuitem" data-category="it-consultant">IT Consultant</li>
+                    <li role="menuitem" data-category="network-administrator">Network Administrator</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Search Input with Search Icon -->
+        <div class="search-input-container">
+            <input type="text" class="search-input" id="search-query" placeholder="Search..." aria-label="Search input field">
+            <i class="fas fa-search search-icon" aria-hidden="true"></i>
+        </div>
+    </div>
+
+    <script>
+        // Script to handle dropdown and search functionality
+        const dropdownButton = document.querySelector('.dropdown-button');
+        const dropdownMenu = document.querySelector('.dropdown-menu');
+        const categoryItems = document.querySelectorAll('.dropdown-menu ul li');
+
+        let selectedCategory = '';
+
+        // Toggle dropdown menu
+        dropdownButton.addEventListener('click', () => {
+            const isOpen = dropdownMenu.classList.contains('show');
+            dropdownMenu.classList.toggle('show');
+            dropdownButton.setAttribute('aria-expanded', !isOpen);
+        });
+
+        // Close dropdown if clicked outside
+        document.addEventListener('click', (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+                dropdownButton.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Handle category selection
+        categoryItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                selectedCategory = e.target.textContent;
+                dropdownButton.textContent = selectedCategory;
+                dropdownMenu.classList.remove('show');  // Close menu after selection
+                dropdownButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+    </script>
+</body>
+</html>

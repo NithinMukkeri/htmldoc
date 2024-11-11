@@ -1,0 +1,45 @@
+#okay {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center; /* Center the image vertically and horizontally */
+    width: 100%;
+    height: 100%;
+}
+.sub{
+    margin: 20px;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+}
+
+
+
+
+/*.main{
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 40px;
+ border: 1px solid red;
+ text-align: center;
+
+}
+
+img{
+    width: 300px;
+    height: 300px;
+
+}
+
+#okay{
+    display: flex;
+    flex-direction: row;
+    margin: 20px;
+    flex-wrap: wrap;
+
+}
+*/
